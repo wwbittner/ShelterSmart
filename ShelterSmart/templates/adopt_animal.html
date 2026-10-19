@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adopt_animal</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="site_name">ShelterSmart</h1>
+        <form action = "/">
+            <button type="submit" class="home_button">
+                <img src="../static/home_icon.png">
+            </button>
+        </form>
+    </nav>
+    <div style="overflow-y: auto;" class="main_text">
+        <h2>Register Adoption of Animal</h2>
+        <form action="/adopt_animal" method="POST">
+            <label for="id_to_adopt">Animal ID:</label>
+            <input name="id_to_adopt" value="{{ animal_to_adopt['id'] }}" class="id_box" readonly><br><br>
+
+            <label for="animal_name">Animal's Name:</label>
+            <input type="text" id="animal_name" name="animal_name" value="{{ animal_to_adopt['name'] }}"><br><br>
+
+            <label for="adoption_date">Adoption Date:</label>
+            <input type="date" name="adoption_date" class="minor_button"><br><br>
+
+            <label for="adopter_first_name">Adopter First Name:</label>
+            <input type="text" name="adopter_first_name"><br><br>
+
+            <label for="adopter_last_name">Adopter Last Name:</label>
+            <input type="text" name="adopter_last_name"><br><br>
+
+            <label for="adopter_address">Adopter Address:</label>
+            <input type="text" name="adopter_address"><br><br>
+
+            <label for="adopter_phone">Adopter Phone:</label>
+            <input type="text" name="adopter_phone"><br><br>
+
+            <button type="submit" class="minor_button">Confirm Adoption</button>
+
+
+
+
+            <select name="animal_species" required hidden>
+                <option value="Dog" {% if species == "Dog" %}selected{% endif %}>Dog</option>
+                <option value="Cat" {% if species == "Cat" %}selected{% endif %}>Cat</option>
+                <option value="Other" {% if species == "Other" %}selected{% endif %}>Other</option>
+            </select><br>
+
+            <input type="text" id="animal_breed" name="animal_breed" value="{{animal_to_adopt['breed']}}" hidden><br><br>
+
+            <select name="animal_sex" hidden>
+                <option value="" {% if animal_sex == "" %}selected{% endif %}></option>
+                <option value="M" {% if animal_sex == "M" %}selected{% endif %}>M</option>
+                <option value="F" {% if animal_sex == "F" %}selected{% endif %}>F</option>
+            </select><br><br>
+
+            <input type="number" name="animal_age" id="animal_age" value = "{{animal_to_adopt['age']}}" hidden><br><br>
+
+            <select name="animal_status" hidden>
+                <option value="Adopted" {% if animal_status == "Adopted" %}selected{% endif %} selected>Adopted</option>
+            </select><br><br>
+
+            <select name="spay_neuter" hidden>
+                <option value="Unknown" {% if spay_neuter == "Unknown" %}selected{% endif %}>Unknown</option>
+                <option value="Not Spayed/Neutered" {% if spay_neuter == "Not Spayed/Neutered" %}selected{% endif %}>Not Spayed/Neutered</option>
+                <option value="Spayed/Neutered" {% if spay_neuter == "Spayed/Neutered" %}selected{% endif %}>Spayed/Neutered</option>
+            </select><br><br>
+
+            <input type="date" name="date_arrived" id="date_arrived" value="{{animal_to_adopt['date_arrived']}}" hidden><br><br>
+
+            <input type="text" id="how_acquired" name="how_acquired" value="{{animal_to_adopt['how_acquired']}}" hidden><br><br>
+
+            <input type="checkbox" name="vaccines_received" value="DAPP/DHPP" {% if dapp_received %}checked{% endif %} hidden>
+            <input type="checkbox" name="vaccines_received" value="Bordetella" {% if bord_received %}checked{% endif %} hidden>
+            <input type="checkbox" name="vaccines_received" value="Rabies" {% if rabies_received %}checked{% endif %} hidden>
+            <input type="checkbox" name="vaccines_received" value="FVRCP" {% if fvrcp_received %}checked{% endif %} hidden>
+            <input type="checkbox" name="vaccines_received" value="FeLV" {% if felv_received %}checked{% endif %} hidden>
+
+            <input type="text" name="medical_conditions" id="medical_conditions" value="{{animal_to_adopt['medical_conditions']}}" hidden><br><br>
+
+            <input type="text" name="animal_location" id="animal_location" value="{{animal_to_adopt['location']}}" hidden><br><br>
+
+            <select name="animal_sponsored" hidden>
+                <option value="No" {% if animal_sponsored == "No" %}select{% endif %}>No</option>
+                <option value="Yes" {% if animal_sponsored == "Yes" %}select{% endif %}>Yes</option>
+            </select><br><br>
+
+            <input type="text" name="animal_notes" id="animal_notes" value = "{{animal_to_adopt['notes']}}" hidden><br><br>
+
+        </form>
+    </div>
+</body>
+</html>

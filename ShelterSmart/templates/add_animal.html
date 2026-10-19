@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_animal</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="site_name">ShelterSmart</h1>
+        <form action = "/">
+            <button type="submit" class="home_button">
+                <img src="../static/home_icon.png">
+            </button>
+        </form>
+    </nav>
+
+    <div style="overflow-y: auto;" class="main_text">
+        <h2>Add Animal</h2>
+        <form action="/add_animal" method="POST">
+            <label for="animal_name">Animal's Name:</label>
+            <input type="text" id="animal_name" name="animal_name"><br><br>
+
+            <label for="animal_species">Species:</label>
+            <select name="animal_species" required>
+                <option value="" hidden selected disabled></option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Other">Other</option>
+            </select>
+            <label>If "Other," please describe in Notes</label><br><br>
+
+            <label for="animal_breed">Breed:</label>
+            <input type="text" id="animal_breed" name="animal_breed"><br><br>
+
+            <label for="animal_sex">Animal's Sex:</label>
+            <select name="animal_sex">
+                <option value="" hidden disabled selected></option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select><br><br>
+
+            <label for="animal_age">Animal's Age:</label>
+            <input type="number" name="animal_age" id="animal_age"><br><br>
+
+            <label for="animal_status">Animal's Status:</label>
+            <select name="animal_status">
+                <option value="In Shelter" selected>In Shelter</option>
+                <option value="In Foster Care">In Foster Care</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+
+            <label for="spay_neuter">Spay/Neuter Status:</label>
+            <select name="spay_neuter">
+                <option value="Unknown" selected>Unknown</option>
+                <option value="Not Spayed/Neutered">Not Spayed/Neutered</option>
+                <option value="Spayed/Neutered">Spayed/Neutered</option>
+            </select><br><br>
+
+            <label for="date_arrived">Arrival Date:</label>
+            <input type="date" name="date_arrived" id="date_arrived" class="minor_button"><br><br>
+
+            <label for="how_acquired">How was the animal acquired?</label>
+            <input type="text" id="how_acquired" name="how_acquired"><br><br>
+
+            <label>Which vaccinations has the animal received?</label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="DAPP/DHPP">
+                DAPP/DHPP
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="Bordetella">
+                Bordetella
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="Rabies">
+                Rabies
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="FVRCP">
+                FVRCP
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="FeLV">
+                FeLV
+            </label><br><br>
+
+            
+            <label for="medical_conditions">Describe any medical conditions the animal has:</label><br>
+            <input type="text" name="medical_conditions" id="medical_conditions"><br><br>
+
+            <label for="animal_location">Animal Location (Kennel, Foster Address, or Adopter Address):</label>
+            <input type="text" name="animal_location" id="animal_location"><br><br>
+
+            <label for="animal_sponsored">Has the animal's adoption fee been sponsored?</label>
+            <select name="animal_sponsored">
+                <option value="No" selected>No</option>
+                <option value="Yes">Yes</option>
+            </select><br><br>
+
+            <label for="animal_notes">Notes</label><br>
+            <input type="text" name="animal_notes" id="animal_notes"><br><br>
+
+            <button type="submit" class="minor_button">Submit</button>
+
+        </form>
+    </div>
+
+
+</body>
+</html>

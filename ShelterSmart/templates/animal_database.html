@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animal_database</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="site_name">ShelterSmart</h1>
+        <form action = "/">
+            <button type="submit" class="home_button">
+                <img src="../static/home_icon.png">
+            </button>
+        </form>
+    </nav>
+
+    <div style="overflow: auto;" class="main_text">
+        <h2>Animals Currently Under Shelter Care</h2><br>
+        <table border="1" class="spreadsheet_table">
+            <tr class="spreadsheet_table_header">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Spayed/Neutered?</th>
+                <th>Date Arrived</th>
+                <th>How Acquired</th>
+                <th>Vaccines Required</th>
+                <th>Medical Conditions</th>
+                <th>Medical Comments</th>
+                <th>Location</th>
+                <th>Sponsored?</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Register Adoption</th>
+            </tr>
+
+            {% for animal in animals %}
+            <tr>
+                <td>{{animal["id"]}}</td>
+                <td>{{animal["name"]}}</td>
+                <td>{{animal["species"]}}</td>
+                <td>{{animal["breed"]}}</td>
+                <td>{{animal["sex"]}}</td>
+                <td>{{animal["age"]}}</td>
+                <td>{{animal["status"]}}</td>
+                <td>{{animal["spay_neuter"]}}</td>
+                <td>{{animal["date_arrived"]}}</td>
+                <td>{{animal["how_acquired"]}}</td>
+                <td>{{animal["vaccines_needed"]}}</td>
+                <td>{{animal["medical_conditions"]}}</td>
+                <td>{{animal["medical_comments"]}}</td>
+                <td>{{animal["location"]}}</td>
+                <td>{{animal["sponsored"]}}</td>
+                <td>{{animal["notes"]}}</td>
+                <td>
+                    <a href="{{ url_for('go_to_edit_animal', id_to_edit = animal['id']) }}">
+                        <button type="button">Edit</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="/delete_animal" method="POST">
+                        <input type="hidden" name="id_to_delete" value = "{{ animal.id }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ url_for('go_to_adopt_animal', id_to_adopt = animal['id']) }}">
+                        <button type="button">Register Adoption</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table><br>
+    </div><br>
+
+
+    <div class="major_button_container">
+        <form action = "/go_to_add_animal" method = "POST">
+            <button type="submit" class="major_button">Add Animal</button>
+        </form>
+        <form action = "/go_to_adopted_animal_database" method="POST" >
+            <button type="submit" class="major_button">View Adopted Animals</button>
+        </form>
+        <form action = "/go_to_deleted_animal_database" method="POST">
+            <button type="submit" class="major_button">View Deleted Animals</button>
+        </form>
+    </div>
+</body>
+</html>

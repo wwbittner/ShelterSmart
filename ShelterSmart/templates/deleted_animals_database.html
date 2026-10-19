@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deleted_animals_database</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="site_name">ShelterSmart</h1>
+        <form action = "/">
+            <button type="submit" class="home_button">
+                <img src="../static/home_icon.png">
+            </button>
+        </form>
+    </nav>
+
+    <div style="overflow-x: auto;" class="main_text">
+        <h2>Deleted Animals</h2>
+        <table border="1" class="spreadsheet_table">
+            <tr class="spreadsheet_table_header">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Spayed/Neutered?</th>
+                <th>Date Arrived</th>
+                <th>How Acquired</th>
+                <th>Vaccines Required</th>
+                <th>Medical Conditions</th>
+                <th>Medical Comments</th>
+                <th>Location</th>
+                <!-- <th>Adoption Date</th>
+                <th>Adopter Name</th>
+                <th>Adopter Address</th>
+                <th>Adopter City</th>
+                <th>Adopter State</th>
+                <th>Adopter ZIP</th> -->
+                <th>Sponsored?</th>
+                <th>Notes</th>
+                <th>Restore</th>
+                <th>Delete Forever</th>
+
+            </tr>
+
+            {% for animal in deleted_animals %}
+            <tr>
+                <td>{{animal["id"]}}</td>
+                <td>{{animal["name"]}}</td>
+                <td>{{animal["species"]}}</td>
+                <td>{{animal["breed"]}}</td>
+                <td>{{animal["sex"]}}</td>
+                <td>{{animal["age"]}}</td>
+                <td>{{animal["status"]}}</td>
+                <td>{{animal["spay_neuter"]}}</td>
+                <td>{{animal["date_arrived"]}}</td>
+                <td>{{animal["how_acquired"]}}</td>
+                <td>{{animal["vaccines_needed"]}}</td>
+                <td>{{animal["medical_conditions"]}}</td>
+                <td>{{animal["medical_comments"]}}</td>
+                <td>{{animal["location"]}}</td>
+                <!-- <td>{{animal["date_adopted"]}}</td>
+                <td>{{animal["adopter_name"]}}</td>
+                <td>{{animal["adopter_address"]}}</td>
+                <td>{{animal["adopter_city"]}}</td>
+                <td>{{animal["adopter_state"]}}</td>
+                <td>{{animal["adopter_zip"]}}</td> -->
+                <td>{{animal["sponsored"]}}</td>
+                <td>{{animal["notes"]}}</td>
+                <td>
+                    <form action="/restore_deleted_animal" method="POST">
+                        <input type="hidden" name="id_to_restore" value="{{ animal.id }}">
+                        <button type="submit">Restore</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/perm_delete_animal" method="POST">
+                        <input type="hidden" name="id_to_perm_delete" value="{{ animal.id }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table><br><br>
+        <form action = "/go_to_animal_database">
+            <button type="submit" class="minor_button">Return to Animal Management</button>
+        </form>
+    </div><br>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="site_name">ShelterSmart</h1>
+        <form action = "/">
+            <button type="submit" class="home_button">
+                <img src="../static/home_icon.png">
+            </button>
+        </form>
+    </nav>
+    <div style="overflow-y: auto;" class="main_text">
+        <h1>Edit Animal</h1>
+        <form action="/edit_animal" method="POST">
+            <label for="id_to_edit">Animal ID: </label>
+            <input name="id_to_edit" value="{{animal_to_edit['id']}}" readonly><br><br>
+
+            <label for="animal_name">Animal's Name:</label>
+            <input type="text" id="animal_name" name="animal_name" value="{{animal_to_edit['name']}}"><br><br>
+
+            <label for="animal_species">Species:</label>
+            <select name="animal_species" required>
+                <option value="Dog" {% if animal_to_edit["species"] == "Dog" %}selected{% endif %}>Dog</option>
+                <option value="Cat" {% if animal_to_edit["species"] == "Cat" %}selected{% endif %}>Cat</option>
+                <option value="Other" {% if animal_to_edit["species"] == "Other" %}selected{% endif %}>Other</option>
+            </select><br>
+            <label>If "Other," please describe in Notes</label><br><br>
+
+            <label for="animal_breed">Breed:</label>
+            <input type="text" id="animal_breed" name="animal_breed" value="{{animal_to_edit['breed']}}"><br><br>
+
+            <label for="animal_sex">Animal's Sex:</label>
+            <select name="animal_sex">
+                <option value="" {% if animal_sex == "" %}selected{% endif %}></option>
+                <option value="M" {% if animal_sex == "M" %}selected{% endif %}>M</option>
+                <option value="F" {% if animal_sex == "F" %}selected{% endif %}>F</option>
+            </select><br><br>
+
+            <label for="animal_age">Animal's Age:</label>
+            <input type="number" name="animal_age" id="animal_age" value = "{{animal_to_edit['age']}}"><br><br>
+
+            <label for="animal_status">Animal's Status:</label>
+            <select name="animal_status">
+                <option value="In Shelter" {% if animal_status == "In Shelter" %}selected{% endif %}>In Shelter</option>
+                <option value="In Foster Care" {% if animal_status == "In Foster Care" %}selected{% endif %}>In Foster Care</option>
+                <option value="Adopted" {% if animal_status == "Adopted" %}selected{% endif %}>Adopted</option>
+                <option value="Other" {% if animal_status == "Other" %}selected{% endif %}>Other</option>
+            </select><br><br>
+
+            <label for="spay_neuter">Spay/Neuter Status:</label>
+            <select name="spay_neuter">
+                <option value="Unknown" {% if spay_neuter == "Unknown" %}selected{% endif %}>Unknown</option>
+                <option value="Not Spayed/Neutered" {% if spay_neuter == "Not Spayed/Neutered" %}selected{% endif %}>Not Spayed/Neutered</option>
+                <option value="Spayed/Neutered" {% if spay_neuter == "Spayed/Neutered" %}selected{% endif %}>Spayed/Neutered</option>
+            </select><br><br>
+
+            <label for="date_arrived">Arrival Date:</label>
+            <input type="date" name="date_arrived" id="date_arrived" value="{{animal_to_edit['date_arrived']}}"><br><br>
+
+            <label for="how_acquired">How was the animal acquired?</label>
+            <input type="text" id="how_acquired" name="how_acquired" value="{{animal_to_edit['how_acquired']}}"><br><br>
+
+            <label>Which vaccinations has the animal received?</label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="DAPP/DHPP" {% if dapp_received %}checked{% endif %}>
+                DAPP/DHPP
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="Bordetella" {% if bord_received %}checked{% endif %}>
+                Bordetella
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="Rabies" {% if rabies_received %}checked{% endif %}>
+                Rabies
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="FVRCP" {% if fvrcp_received %}checked{% endif %}>
+                FVRCP
+            </label><br>
+            <label>
+                <input type="checkbox" name="vaccines_received" value="FeLV" {% if felv_received %}checked{% endif %}>
+                FeLV
+            </label><br><br>
+
+            <label for="medical_conditions">Describe any medical conditions the animal has:</label><br>
+            <input type="text" name="medical_conditions" id="medical_conditions" value="{{animal_to_edit['medical_conditions']}}"><br><br>
+
+            <label for="animal_location">Animal Location (Kennel, Foster Address, or Adopter Address):</label>
+            <input type="text" name="animal_location" id="animal_location" value="{{animal_to_edit['location']}}"><br><br>
+
+            <label for="animal_sponsored">Has the animal's adoption fee been sponsored?</label>
+            <select name="animal_sponsored">
+                <option value="No" {% if animal_sponsored == "No" %}select{% endif %}>No</option>
+                <option value="Yes" {% if animal_sponsored == "Yes" %}select{% endif %}>Yes</option>
+            </select><br><br>
+
+            <label for="animal_notes">Notes</label><br>
+            <input type="text" name="animal_notes" id="animal_notes" value = "{{animal_to_edit['notes']}}"><br><br>
+
+            <button type="submit" class="minor_button">Confirm Changes</button>
+        </form>
+    </div>
+</body>
+</html>
